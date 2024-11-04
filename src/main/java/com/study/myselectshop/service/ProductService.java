@@ -9,6 +9,7 @@ import com.study.myselectshop.dto.ProductMyPriceRequestDto.ProductMyPriceRequest
 import com.study.myselectshop.dto.ProductRequestDto.ProductRequestDto;
 import com.study.myselectshop.dto.ProductResponseDto.ProductResponseDto;
 import com.study.myselectshop.entity.Product;
+import com.study.myselectshop.naver.dto.ItemDto;
 import com.study.myselectshop.repository.ProductRepository;
 
 import jakarta.transaction.Transactional;
@@ -58,5 +59,13 @@ public class ProductService {
 		}
 
 		return productResponseDtos;
+	}
+
+	@Transactional
+	public void updateBySearch(Long id, ItemDto itemDto) {
+		Product product = productRepository.findById(id)
+			.orElseThrow(() -> new NullPointerException("해당 상품을 찾을 수 없습니다. "));
+
+		product.updateByItemDto(itemDto);
 	}
 }
