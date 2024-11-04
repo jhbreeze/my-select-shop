@@ -1,4 +1,4 @@
-package com.study.myselectshop.entity.Timestamped;
+package com.study.myselectshop.entity;
 
 import java.time.LocalDateTime;
 

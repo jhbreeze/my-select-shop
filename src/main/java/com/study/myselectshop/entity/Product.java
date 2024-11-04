@@ -1,9 +1,8 @@
 package com.study.myselectshop.entity;
 
 
-import com.study.myselectshop.dto.ProductMyPriceRequestDto.ProductMyPriceRequestDto;
-import com.study.myselectshop.dto.ProductRequestDto.ProductRequestDto;
-import com.study.myselectshop.entity.Timestamped.Timestamped;
+import com.study.myselectshop.dto.ProductMyPriceRequestDto;
+import com.study.myselectshop.dto.ProductRequestDto;
 import com.study.myselectshop.naver.dto.ItemDto;
 
 import jakarta.persistence.Column;

@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.study.myselectshop.dto.ProductMyPriceRequestDto.ProductMyPriceRequestDto;
-import com.study.myselectshop.dto.ProductRequestDto.ProductRequestDto;
-import com.study.myselectshop.dto.ProductResponseDto.ProductResponseDto;
+import com.study.myselectshop.dto.ProductMyPriceRequestDto;
+import com.study.myselectshop.dto.ProductRequestDto;
+import com.study.myselectshop.dto.ProductResponseDto;
 import com.study.myselectshop.service.ProductService;
 
 import lombok.RequiredArgsConstructor;

@@ -1,4 +1,4 @@
-package com.study.myselectshop.dto.ProductMyPriceRequestDto;
+package com.study.myselectshop.dto;
 
 import lombok.Getter;
 import lombok.Setter;

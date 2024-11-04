@@ -5,9 +5,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.study.myselectshop.dto.ProductMyPriceRequestDto.ProductMyPriceRequestDto;
-import com.study.myselectshop.dto.ProductRequestDto.ProductRequestDto;
-import com.study.myselectshop.dto.ProductResponseDto.ProductResponseDto;
+import com.study.myselectshop.dto.ProductMyPriceRequestDto;
+import com.study.myselectshop.dto.ProductRequestDto;
+import com.study.myselectshop.dto.ProductResponseDto;
 import com.study.myselectshop.entity.Product;
 import com.study.myselectshop.naver.dto.ItemDto;
 import com.study.myselectshop.repository.ProductRepository;

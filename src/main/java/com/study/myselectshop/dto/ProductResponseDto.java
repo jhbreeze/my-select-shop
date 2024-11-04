@@ -1,4 +1,4 @@
-package com.study.myselectshop.dto.ProductResponseDto;
+package com.study.myselectshop.dto;
 
 import com.study.myselectshop.entity.Product;
 

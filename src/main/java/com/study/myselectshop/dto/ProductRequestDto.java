@@ -1,4 +1,4 @@
-package com.study.myselectshop.dto.ProductRequestDto;
+package com.study.myselectshop.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
