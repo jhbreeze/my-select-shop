@@ -1,5 +1,8 @@
 package com.study.myselectshop.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.study.myselectshop.dto.ProductMyPriceRequestDto.ProductMyPriceRequestDto;
@@ -44,5 +47,16 @@ public class ProductService {
 		if(myprice < MIN_MY_PRICE) {
 			throw new IllegalArgumentException("최소가격은 " + MIN_MY_PRICE + "원 이상 설정해야합니다. ");
 		}
+	}
+
+	public List<ProductResponseDto> getProducts() {
+		List<Product> products = productRepository.findAll();
+		List<ProductResponseDto> productResponseDtos = new ArrayList<>();
+
+		for(Product product : products) {
+			productResponseDtos.add(new ProductResponseDto(product));
+		}
+
+		return productResponseDtos;
 	}
 }
