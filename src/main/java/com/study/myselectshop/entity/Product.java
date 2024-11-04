@@ -1,6 +1,7 @@
 package com.study.myselectshop.entity;
 
 
+import com.study.myselectshop.dto.ProductMyPriceRequestDto.ProductMyPriceRequestDto;
 import com.study.myselectshop.dto.ProductRequestDto.ProductRequestDto;
 import com.study.myselectshop.entity.Timestamped.Timestamped;
 
@@ -45,4 +46,7 @@ public class Product extends Timestamped {
 		this.lprice = requestDto.getLprice();
 	}
 
+	public void update(ProductMyPriceRequestDto requestDto) {
+		this.myprice = requestDto.getMyprice();
+	}
 }

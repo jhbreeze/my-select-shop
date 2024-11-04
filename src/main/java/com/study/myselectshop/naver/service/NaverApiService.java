@@ -32,7 +32,7 @@ public class NaverApiService {
 
 		URI uri = UriComponentsBuilder
 			.fromUriString("https://openapi.naver.com")
-			.path("/v1/serach/shop.json")
+			.path("/v1/search/shop.json")
 			.queryParam("display", 15)
 			.queryParam("query", query)
 			.encode()
@@ -47,7 +47,7 @@ public class NaverApiService {
 			.build();
 
 		ResponseEntity<String> responseEntity = restTemplate.exchange(requestEntity, String.class);
-		log.info("=== NAVER API STATUS CODE : {} ====" , responseEntity.getStatusCode());
+		log.info("==== NAVER API STATUS CODE : {} " , responseEntity.getStatusCode());
 
 		return fromJSONtoItems(responseEntity.getBody());
 	}
