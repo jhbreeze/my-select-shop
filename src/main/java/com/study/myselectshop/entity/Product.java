@@ -1,5 +1,6 @@
 package com.study.myselectshop.entity;
 
+import static jakarta.persistence.FetchType.*;
 
 import com.study.myselectshop.dto.ProductMyPriceRequestDto;
 import com.study.myselectshop.dto.ProductRequestDto;
@@ -10,12 +11,16 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Getter
+@Setter
 @Table(name = "product")
 @NoArgsConstructor
 public class Product extends Timestamped {
@@ -39,11 +44,16 @@ public class Product extends Timestamped {
 	@Column(nullable = false)
 	private int myprice;
 
-	public Product(ProductRequestDto requestDto) {
+	@ManyToOne(fetch = LAZY)
+	@JoinColumn(name = "user_id", nullable = false)
+	public User user;
+
+	public Product(ProductRequestDto requestDto, User user) {
 		this.title = requestDto.getTitle();
 		this.image = requestDto.getImage();
 		this.link = requestDto.getLink();
 		this.lprice = requestDto.getLprice();
+		this.user = user;
 	}
 
 	public void update(ProductMyPriceRequestDto requestDto) {

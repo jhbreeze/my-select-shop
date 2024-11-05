@@ -28,8 +28,6 @@ public class UserService {
 		String username = requestDto.getUsername();
 		String password = passwordEncoder.encode(requestDto.getPassword());
 
-		log.info("암호화된 비밀번호: {}", password);
-
 		// 회원 중복 확인
 		Optional<User> checkUsername = userRepository.findByUsername(username);
 		if (checkUsername.isPresent()) {

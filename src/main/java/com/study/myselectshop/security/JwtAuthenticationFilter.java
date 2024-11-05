@@ -32,10 +32,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 		try {
 			LoginRequestDto requestDto = new ObjectMapper().readValue(request.getInputStream(), LoginRequestDto.class);
 
-			// 로그인 시도 시 입력된 비밀번호 확인
-			log.info("로그인 시도 username: {}", requestDto.getUsername());
-			log.info("로그인 시도 password: {}", requestDto.getPassword());
-
+			//  AuthenticationManager가 인증 처리
 			return getAuthenticationManager().authenticate(
 				new UsernamePasswordAuthenticationToken(
 					requestDto.getUsername(),
