@@ -47,7 +47,13 @@ public class ProductController {
 		@RequestParam("isAsc") boolean isAsc,
 		@AuthenticationPrincipal UserDetailsImpl userDetails) {
 
-		return productService.getProducts(userDetails.getUser(),  page-1, size, sortBy, isAsc);
+		return productService.getProducts(userDetails.getUser(), page - 1, size, sortBy, isAsc);
 	}
 
+	// 관심상품 폴더에 추가
+	@PostMapping("/products/{productId}/folder")
+	public void addFolder(@PathVariable Long productId, @RequestParam Long folderId
+	, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+		productService.addFolder(productId, folderId, userDetails.getUser());
+	}
 }
