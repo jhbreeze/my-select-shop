@@ -2,6 +2,9 @@ package com.study.myselectshop.entity;
 
 import static jakarta.persistence.FetchType.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.study.myselectshop.dto.ProductMyPriceRequestDto;
 import com.study.myselectshop.dto.ProductRequestDto;
 import com.study.myselectshop.naver.dto.ItemDto;
@@ -13,6 +16,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -47,6 +51,9 @@ public class Product extends Timestamped {
 	@ManyToOne(fetch = LAZY)
 	@JoinColumn(name = "user_id", nullable = false)
 	public User user;
+
+	@OneToMany(mappedBy = "product")
+	private List<ProductFolderRelation> productFolders = new ArrayList<>();
 
 	public Product(ProductRequestDto requestDto, User user) {
 		this.title = requestDto.getTitle();
