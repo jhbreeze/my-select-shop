@@ -1,8 +1,9 @@
 package com.study.myselectshop.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.study.myselectshop.dto.ProductMyPriceRequestDto;
@@ -10,6 +11,7 @@ import com.study.myselectshop.dto.ProductRequestDto;
 import com.study.myselectshop.dto.ProductResponseDto;
 import com.study.myselectshop.entity.Product;
 import com.study.myselectshop.entity.User;
+import com.study.myselectshop.entity.UserRoleEnum;
 import com.study.myselectshop.naver.dto.ItemDto;
 import com.study.myselectshop.repository.ProductRepository;
 
@@ -47,15 +49,25 @@ public class ProductService {
 			.orElseThrow(() -> new NullPointerException("해당 상품을 찾을 수 없습니다."));
 	}
 
-	public List<ProductResponseDto> getProducts(User user) {
-		List<Product> products = productRepository.findAllByUser(user);
-		List<ProductResponseDto> productResponseDtos = new ArrayList<>();
+	public Page<ProductResponseDto> getProducts(User user,
+		int page, int size, String sortBy, boolean isAsc) {
 
-		for(Product product : products) {
-			productResponseDtos.add(new ProductResponseDto(product));
+		// Paging
+		Sort.Direction direction = isAsc ? Sort.Direction.ASC : Sort.Direction.DESC;
+		Sort sort = Sort.by(direction, sortBy);
+		Pageable pageable = PageRequest.of(page, size, sort);
+
+		UserRoleEnum userRole = user.getRole();
+
+		Page<Product> products;
+
+		if(userRole == UserRoleEnum.USER) {
+			products = productRepository.findAllByUser(user, pageable);
+		} else {
+			products = productRepository.findAll(pageable);
 		}
 
-		return productResponseDtos;
+		return products.map(ProductResponseDto::new);
 	}
 
 	@Transactional
@@ -66,14 +78,4 @@ public class ProductService {
 		product.updateByItemDto(itemDto);
 	}
 
-	public List<ProductResponseDto> getAllProducts() {
-		List<Product> products = productRepository.findAll();
-		List<ProductResponseDto> productResponseDtos = new ArrayList<>();
-
-		for(Product product : products) {
-			productResponseDtos.add(new ProductResponseDto(product));
-		}
-
-		return productResponseDtos;
-	}
 }
