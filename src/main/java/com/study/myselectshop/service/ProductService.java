@@ -5,6 +5,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.study.myselectshop.dto.ProductMyPriceRequestDto;
 import com.study.myselectshop.dto.ProductRequestDto;
@@ -15,7 +16,6 @@ import com.study.myselectshop.entity.UserRoleEnum;
 import com.study.myselectshop.naver.dto.ItemDto;
 import com.study.myselectshop.repository.ProductRepository;
 
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -49,6 +49,7 @@ public class ProductService {
 			.orElseThrow(() -> new NullPointerException("해당 상품을 찾을 수 없습니다."));
 	}
 
+	@Transactional(readOnly = true)
 	public Page<ProductResponseDto> getProducts(User user,
 		int page, int size, String sortBy, boolean isAsc) {
 

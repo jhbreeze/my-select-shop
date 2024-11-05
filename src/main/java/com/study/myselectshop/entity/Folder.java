@@ -31,8 +31,8 @@ public class Folder {
 	@JoinColumn(columnDefinition = "user_id", nullable = false)
 	private User user;
 
-	public Folder(User user, String name) {
-		this.user = user;
+	public Folder(String name, User user) {
 		this.name = name;
+		this.user = user;
 	}
 }
